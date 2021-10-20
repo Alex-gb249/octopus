@@ -1,6 +1,0 @@
-ARCHIVOS:
-
-    - pdfImage.py: Este archivo únicamente convierte de pdf a imagenes, es un archivo de prueba.
-    - pytess.py: Es una prueba de la librería pytesseract, evalua que reconozca bien el contenido en las imágenes.
-    - final.py: Este es un archivo más completo, dónde se integra las dos anteriores funcionalidades, para evaluar cuales pdf pertenecen a cuales categorías.
-    - retrac.py: regresa los pdf de cada categoría a la carpeta pdf (Revierte los cambios de final.py) para poder probar final.py sin tener que mover manualmente los archivos.
