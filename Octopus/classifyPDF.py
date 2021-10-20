@@ -53,4 +53,4 @@ if lista_pdfs:
         except:
             pass
 else: 
-    print("Carpeta vacía general vacía.")
+    print("Carpeta general vacía.")
