@@ -14,16 +14,19 @@ directorios = {
 lista_pdfs = os.listdir(directorios["pdfs"]) # Lista con los nombres de los archivos.
 
 if lista_pdfs:
+    print("Empezando la clasificación...")
     for pdf in lista_pdfs:
         try:
             if pdf.split(".")[-1] == "pdf": # Esto comprueba si el documento es formato pdf, esto se puede cambiar/reemplazar/eliminar si se requiere
-                print("Empezando la clasificación...")
+                print(f"Detectando tipo de documento para {pdf}")
+
                 inicio = time.time() # Inicio toma del tiempo.
                 rutaPDF = directorios["pdfs"]+'\\'+pdf # Ruta del pdf.
                 images = convert_from_path(rutaPDF, last_page=1) #Rescata la página 1 del pdf
                 images[0].save(directorios["images"]+'\\'+'page'+str(0)+'.jpg', 'JPEG')
 
                 texto = pytesseract.image_to_string(directorios["images"]+"\\page0.jpg")
+                texto = texto.lower()
 
                 if texto:
                     # Tiene texto
@@ -39,11 +42,9 @@ if lista_pdfs:
                     else:
                         # En caso que no se identifique a donde pertenece
                         shutil.move(rutaPDF, directorios["categorias"]+"\\"+"Otros")
-                    pass
                 else:
                     # Significa que la primera página vino vacía o no se encontró texto
                     print("No se encontró texto para clasificar. (En la primera página)")
-                    pass
 
                 fin = time.time()
                 print(f"Tiempo de clasificación para el pdf'{pdf}': {fin-inicio}")
